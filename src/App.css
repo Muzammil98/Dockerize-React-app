@@ -1,38 +1,197 @@
-.App {
-  text-align: center;
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #dfdfdf;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-track {
+  background: #dfdfdf;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none !important;
+}
+button:focus,
+a:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+button:-webkit-autofill,
+button:-webkit-autofill:hover,
+button:-webkit-autofill:focus,
+button:-webkit-autofill:active {
+  outline: none !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  background: url("./images/bg.jpg") no-repeat center center / cover;
+  height: 768px;
+  max-height: 1080px;
+  width: 100%;
+  opacity: 0.7;
+}
+.wrapper {
+  max-width: 68em;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+.mark-complete {
+  text-decoration: line-through;
+  color: #999;
+  width: 80%;
+
+  margin-right: 5.6rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input-todo {
+  height: 3rem;
+  width: 18rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 0.1rem 0.8rem;
+  color: #333;
+}
+.button-add {
+  border-radius: 25px;
+  background: #fff;
+  height: 3rem;
+  margin-left: 20px;
+  width: 5rem;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.add-icon {
+  background: url("./images/add.svg") no-repeat center center / cover;
+  position: relative;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+}
+.check-icon {
+  background: url("./images/uncheck.svg") no-repeat center center / cover;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.checked-icon {
+  background: url("./images/check.svg") no-repeat center center / cover;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.edit-icon {
+  background: url("./images/edit.svg") no-repeat center center / cover;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+.delete-icon {
+  background: url("./images/delete.svg") no-repeat center center / cover;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+.input-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.list-wrapper {
+  margin: 0 auto auto;
+  margin-top: 60px;
+  max-width: 40rem;
+  padding: 2rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  overflow: auto;
+  max-height: 450px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mark-complete {
+  text-decoration: line-through;
+}
+
+.button-transparent {
+  background: none;
+  border: none;
+  outline: 0 !important;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.action-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo {
+  width: 80%;
+  font-weight: 400;
+  font-size: 15px;
+}
+.edit-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 149px;
+  left: 38%;
+}
+.edit-input {
+  background: rgba(white, white, white, 0.7);
+  border: none;
+  padding: 0.1rem 0.8rem;
+  border-radius: 25px;
+  height: 25px;
+  margin-right: 20px;
+}
+
+.edit-cancel {
+  color: #333;
+}
+
+.emptyHeading {
+  text-align: center;
+  font-weight: 300;
+}
+
+.mainDate {
+  font-family: "Quicksand", sans-serif;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  text-align: right;
+  padding: 0.2rem 1rem;
+  font-weight: lighter;
+  font-size: 20px;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
