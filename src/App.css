@@ -134,6 +134,7 @@ button:-webkit-autofill:active {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  animation: listAnimation 0.5s forwards ease-in;
 }
 
 .mark-complete {
@@ -156,7 +157,8 @@ button:-webkit-autofill:active {
 .todo {
   width: 80%;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
+  font-family: "Quicksand", sans-serif;
 }
 .edit-form {
   display: flex;
@@ -189,9 +191,19 @@ button:-webkit-autofill:active {
   position: absolute;
   top: 0px;
   right: 0px;
+
   text-align: right;
   padding: 0.2rem 1rem;
   font-weight: lighter;
   font-size: 20px;
   color: white;
+}
+
+@keyframes listAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
