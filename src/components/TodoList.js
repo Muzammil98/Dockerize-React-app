@@ -12,17 +12,17 @@ class TodoList extends Component {
   }
 
   render() {
-    return (
-      <div className="list-wrapper">
-        {this.props.todos.length ? (
-          this.props.todos.map((item) => (
-            <TodoItem key={item.key} id={item.key} value={item.value} />
-          ))
-        ) : (
-          <h2 className="emptyHeading">Your list is empty</h2>
-        )}
-      </div>
+    // Todos mapped
+    const todos = this.props.todos.length ? (
+      this.props.todos.map((item) => (
+        <TodoItem key={item.key} id={item.key} value={item.value} />
+      ))
+    ) : (
+      <h2 className="emptyHeading">Your list is empty</h2>
     );
+
+    // Todos returned
+    return <div className="list-wrapper">{todos}</div>;
   }
 }
 const mapStateToProps = (state) => ({
