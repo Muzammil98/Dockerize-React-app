@@ -79,7 +79,8 @@ class TodoItem extends Component {
               className="edit-input"
               type="text"
               name="editText"
-              placeholder={value}
+              // placeholder={value}
+              defaultValue={value}
               onChange={(e) => {
                 this.setState({ [e.target.name]: e.target.value });
               }}
