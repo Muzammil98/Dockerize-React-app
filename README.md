@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Dockerize-React-app
+Following are the steps I took for containerizing a React.js application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Create / Clone a basic React.js application
+![Photo](https://user-images.githubusercontent.com/33463845/218195355-3d42230f-fd03-4f80-9825-3cadceba5e6c.png)
 
-## Available Scripts
+2. Create a `Dockerfile` in project root folder 
+3. Paste the following code in Dockerfile......
+    ```
+    FROM node:18 as react
+    WORKDIR /app
+    COPY package* .
+    RUN npm install
+    COPY public ./public
+    COPY src ./src
+    RUN npm run build
 
-In the project directory, you can run:
+    FROM nginx:alpine
+    COPY --from=react /app/build /usr/share/nginx/html
 
-### `npm start`
+    ```
+    Also create .dockerignore file and paste this in it...
+    ```
+    node_modules
+    ```
+4. So now, nginx will serve our application from the build directory to default port 80 of the container
+5. Build the image by running `docker build -t react-app .`
+6. After the image is built, it can be listed by running `docker images`
+7. Finally, we can create a container using the image created above by running `docker run -dp 3000:80 react-app`  
+   This will run the container in a detached/background mode. List all the containers using `docker ps`
+8. You've successfully dockerized your react.js application.
+9. Currently your docker image is in your local machine, but what if you need to create your container on another machine ? We have a solution to this via pushing our image on container registeries such as DockerHub or ECR. Let's push our image on DockerHub for now
+10. After creating an account and successfully logging in, create a new repository *react-app*. Your repository name will be [Username]/react-app
+11. Open terminal, now we have to tag our image with repository name. We'll run this `docker tag react-app muzammil98/react-app`
+12. Finally, we can now push our image. Run `docker push muzammil98/react-app`
+![Photo](https://user-images.githubusercontent.com/33463845/218202447-7160c80d-8074-47f5-a982-34829d1380bf.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You have successfully dockerized your app and pushed to DockerHub
