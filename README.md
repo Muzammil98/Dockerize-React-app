@@ -1,4 +1,9 @@
 # Dockerize-React-app
+For a full step-by-step guide, head-on over to my blog <a href="https://medium.com/@muzammilsarwar0/containerize-your-react-js-app-with-docker-a-step-by-step-guide-c46e349f78c" target="_blank" >here</a>
+
+<br/>
+<br/>
+
 Following are the steps I took for containerizing a React.js application
 
 1. Create / Clone a basic React.js application
